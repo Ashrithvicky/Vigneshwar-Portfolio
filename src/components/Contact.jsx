@@ -35,7 +35,7 @@ function Contact() {
 
           <div className="contact__socials-links">
             <a
-              href="https://www.linkedin.com/in/s-i-vigneshwar/"
+              href="https://www.linkedin.com/in/sivigneshwar2706"
               target="_blank"
               rel="noopener noreferrer"
               className="contact__social-card"
