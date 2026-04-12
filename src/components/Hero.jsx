@@ -1,4 +1,5 @@
 import { useReveal } from '../hooks/useReveal'
+import ProfileImage from '../assets/ProfileImage.jpeg'
 
 function Hero() {
   const [ref, visible] = useReveal(0.1)
@@ -36,7 +37,7 @@ function Hero() {
 
         <div className="hero__image">
           <div className="hero__image-placeholder">
-            <img src="src/assets/ProfileImage.jpeg" alt="S I Vigneshwar" onError={(e) => { e.target.style.display = 'none' }} />
+            <img src={ProfileImage} alt="S I Vigneshwar" onError={(e) => { e.target.style.display = 'none' }} />
             <span className="hero__image-initials"></span>
           </div>
         </div>
