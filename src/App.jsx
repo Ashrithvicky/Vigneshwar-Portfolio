@@ -5,9 +5,12 @@ import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
 import Education from './components/Education'
+import Certifications from './components/Certifications'
 import Languages from './components/Languages'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import CosmicBackground from './components/CosmicBackground'
+import CustomCursor from './components/CustomCursor'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
@@ -43,14 +46,20 @@ function App() {
 
   return (
     <div className="app">
+      <CosmicBackground />
+      <CustomCursor />
+      <a className="skip-link" href="#projects">Skip to projects</a>
       <Navbar activeSection={activeSection} theme={theme} toggleTheme={toggleTheme} />
-      <Hero />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Education />
-      <Languages />
-      <Contact />
+      <main>
+        <Hero />
+        <Projects />
+        <Experience />
+        <Skills />
+        <Education />
+        <Certifications />
+        <Languages />
+        <Contact />
+      </main>
       <Footer />
     </div>
   )

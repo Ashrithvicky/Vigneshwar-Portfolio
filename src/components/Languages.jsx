@@ -1,11 +1,6 @@
 import { useReveal } from '../hooks/useReveal'
 
-const languages = [
-  { name: 'English', level: 'Full Proficiency', pct: 95 },
-  { name: 'Hindi', level: 'Full Proficiency', pct: 95 },
-  { name: 'Tamil', level: 'Full Proficiency', pct: 95 },
-  { name: 'Telugu', level: 'Spoken Proficiency', pct: 70 },
-]
+const languages = ['English', 'Hindi', 'Tamil', 'Telugu']
 
 function Languages() {
   const [ref, visible] = useReveal()
@@ -18,12 +13,8 @@ function Languages() {
 
         <div className="languages__grid">
           {languages.map((lang) => (
-            <div key={lang.name} className="languages__card">
-              <div className="languages__bar-track">
-                <div className="languages__bar-fill" style={{ width: `${lang.pct}%` }}></div>
-              </div>
-              <h3 className="languages__name">{lang.name}</h3>
-              <p className="languages__level">{lang.level}</p>
+            <div key={lang} className="languages__card">
+              <h3 className="languages__name">{lang}</h3>
             </div>
           ))}
         </div>

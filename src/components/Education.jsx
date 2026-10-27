@@ -1,12 +1,13 @@
-import { useReveal } from '../hooks/useReveal'
+import { FiBookOpen } from 'react-icons/fi'
+import HorizontalGallery from './HorizontalGallery'
 
 const education = [
   {
     institution: 'Vellore Institute of Technology, Vellore',
     state: 'Tamil Nadu',
     period: '2021 – 2026',
-    degree: 'MTECH5 - Computer Science and Engineering',
-    score: 'CGPA - 8.3',
+    degree: 'MTECH - Computer Science and Engineering',
+    score: 'CGPA - 8.27',
   },
   {
     institution: 'VVNKM SR SEC SCHOOL, Vellore',
@@ -25,29 +26,19 @@ const education = [
 ]
 
 function Education() {
-  const [ref, visible] = useReveal()
-
   return (
     <section id="education" className="education">
-      <div ref={ref} className={`section__container ${visible ? 'reveal' : ''}`}>
-        <h2 className="section__title">Education</h2>
-        <div className="section__title-bar"></div>
-
-        <div className="education__list">
+      <HorizontalGallery id="education-gallery" label="Education" noun="education" eyebrow="03 / EDUCATION" title={<>A strong foundation.<em>A curious mind.</em></>}>
           {education.map((edu, i) => (
-            <div key={i} className="education__card">
-              <div className="education__left">
-                <span className="education__period">{edu.period}</span>
-              </div>
-              <div className="education__right">
-                <h3 className="education__institution">{edu.institution}</h3>
-                <p className="education__degree">{edu.degree}</p>
-                <span className="education__score">{edu.score}</span>
-              </div>
-            </div>
+            <article key={edu.period} className={`career-card career-card--${i % 2 === 0 ? 'coral' : 'cyan'}`}>
+              <div className="career-card__top"><FiBookOpen aria-hidden="true" /><span>{edu.period}</span></div>
+              <p className="career-card__eyebrow">{edu.state}</p>
+              <h3 className="career-card__title">{edu.institution}</h3>
+              <p className="career-card__description">{edu.degree}</p>
+              <p className="career-card__score">{edu.score}</p>
+            </article>
           ))}
-        </div>
-      </div>
+      </HorizontalGallery>
     </section>
   )
 }

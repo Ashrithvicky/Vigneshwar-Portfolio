@@ -26,7 +26,13 @@ const tools = [
   'Wireshark', 'Spring Boot', 'Kubernetes', 'FastAPI',
   'TensorFlow', 'Postman', 'Selenium', 'Tableau',
   'PowerBI', 'Flutter', 'MySQL', 'Hugging Face',
-  'Linux OS', 'Django', 'Flask'
+  'Linux OS', 'Django', 'Flask', 'Playwright', 'GitHub Actions', 'Azure DevOps'
+]
+
+const skillGroups = [
+  { title: 'Technical Skills', items: technicalSkills, type: 'technical' },
+  { title: 'Technologies & Tools', items: tools, type: 'tool' },
+  { title: 'Domain Knowledge', items: domains, type: 'domain' },
 ]
 
 function Skills() {
@@ -39,36 +45,12 @@ function Skills() {
         <div className="section__title-bar"></div>
 
         <div className="skills__grid">
-          <div className="skills__col">
-            <div className="skills__card">
-              <h3 className="skills__card-title">Technical Skills</h3>
-              <div className="skills__tags">
-                {technicalSkills.map((s) => (
-                  <span key={s} className="skills__tag">{s}</span>
-                ))}
-              </div>
+          {skillGroups.map((group) => (
+            <div key={group.title} className="skills__group">
+              <h3 className="skills__card-title">{group.title}</h3>
+              <ul className="skills__tags">{group.items.map((skill) => <li key={skill} className={`skills__tag skills__tag--${group.type}`}>{skill}</li>)}</ul>
             </div>
-
-            <div className="skills__card">
-              <h3 className="skills__card-title">Technologies & Tools</h3>
-              <div className="skills__tags">
-                {tools.map((t) => (
-                  <span key={t} className="skills__tag skills__tag--tool">{t}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="skills__col">
-            <div className="skills__card">
-              <h3 className="skills__card-title">Domain Knowledge</h3>
-              <div className="skills__tags">
-                {domains.map((d) => (
-                  <span key={d} className="skills__tag skills__tag--domain">{d}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
