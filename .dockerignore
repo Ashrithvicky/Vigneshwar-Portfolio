@@ -1,0 +1,16 @@
+node_modules
+dist
+coverage
+#github related files
+
+.git
+.github
+*.log
+.idea
+
+#env file
+.env*
+
+#Docker related files
+Dockerfile*
+.dockerignore

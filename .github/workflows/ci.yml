@@ -1,0 +1,41 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v5
+
+      - name: Run Tests (DockerFile Test Stage)
+        run: docker build --target test --progress=plain -t portfolio:test .
+
+      - name: Build Runtime Image
+        run: docker build -t portfolio:${{ github.sha }} .
+
+      - name: Smoke Test The Image
+        run: |
+          docker run -d --name smoke -p 8081:8080 portfolio:${{ github.sha }}
+            for i in $(seq 1 10); do
+              if curl -fsS http://localhost:8081/ > /dev/null; then
+                echo "Smoke Test Passed"; exit 0
+              fi
+              sleep 2
+            done
+            echo "Site Never Responded"; docker logs smoke; exit 1
